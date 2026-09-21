@@ -42,7 +42,7 @@ Combine the two 5 GB physical volumes into a single 10 GB Volume Group named vg_
 ```
 sudo pvcreate vg_server /dev/sdb /dev/sdc
 ```
-![](images/phase2.png)
+
 Create a 4 GB Logical Volume named lv_data inside vg_server, format it with the ext4 filesystem, and mount it to /mnt/data.
 ```
 # Create Logical Volume
@@ -59,6 +59,7 @@ Confirm mount point and capacity:
 ```
 df -h /mnt/data
 ```
+![](images/phase2.png)
 
 ### Phase 3: Live Storage Simulation & Hot-Extension
 
