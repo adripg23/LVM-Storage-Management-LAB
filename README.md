@@ -19,6 +19,7 @@ This project simulates a complete storage lifecycle in a real-world infrastructu
 	- /dev/sdb (5 GB): Secondary disk 
 	- /dev/sdc (5 GB): Secondary disk
 	- /dev/sdd (5 GB): Hot-added tertiary disk
+   ![](images/hardware-setup.png)
 
 ### 1: Storage Inspection & Physical Volume Initialization
 Upon attaching secondary disks /dev/sdb and /deb/sdc to the virtual machine, inspect the available block devices:
@@ -34,6 +35,7 @@ Verify PV creation:
 ```
 sudo pvs
 ```
+![](images/phase1.1.png)
 
 ### Phase 2: Volume Group & Logical Volume Provisioning
 Combine the two 5 GB physical volumes into a single 10 GB Volume Group named vg_server
