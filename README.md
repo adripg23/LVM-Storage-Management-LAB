@@ -42,6 +42,7 @@ Combine the two 5 GB physical volumes into a single 10 GB Volume Group named vg_
 ```
 sudo pvcreate vg_server /dev/sdb /dev/sdc
 ```
+![](images/phase2.png)
 Create a 4 GB Logical Volume named lv_data inside vg_server, format it with the ext4 filesystem, and mount it to /mnt/data.
 ```
 # Create Logical Volume
@@ -73,6 +74,7 @@ Checking utilization reveals ~90% capacity usage:
 ```
 df -h /mnt/data
 ```
+![](images/phase3.1.png)
 
 **2. Live Expansion (Zero Downtime)**
 Using available unallocated space within vg_server (which currently has 6 GB free), extend lv_data by +3 GB. The -r (resizefs) flag automatically expands the underlying ext4 filesystem on the fly without unmounting:
@@ -84,6 +86,7 @@ Verify filesystem expansion:
 df -h /mnt/data
 sudo lvs
 ```
+![](images/phase3.2.png)
 
 ### Phase 4: Scaling Storage Beyond Pool Limits (Hot-Adding Hardware)
 
@@ -105,6 +108,7 @@ sudo vextend vg_server /dev/sdd
 ```
 sudo lvextend -r -L +5GB /dev/vg_server/lv_data
 ```
+![](images/phase4.2.png)
 
 ### Phase 5: Volume Reduction & Safe Physical Disk Decommissioning
 In enterprise maintenance, removing a physical disk without data loss requires evacuating data blocks to remaining disks before unlinking.
@@ -136,6 +140,7 @@ Execute a consolidate check across all LVM abstraction layers:
 ```
 df -h /mnt/data ; sudo vgs ; sudo lvs ; sudo pvs
 ```
+![](images/phase5.png)
 
 ### Expected Output Summary
 **Filesystem ('df -h'):** '/mnt/data' mounted at 7.8 GB with \~3.5 GB used and zero data loss.
@@ -143,6 +148,7 @@ df -h /mnt/data ; sudo vgs ; sudo lvs ; sudo pvs
 **Logical Volume ('lvs'):** 'lv_data' active at 8.00 GB.
 **Physical Volumes ('pvs'):** '/dev/sdc' and '/dev/sdd' active; '/dev/sdb' completely removed.
 
+![](images/result.png)
 ## Key Technical Takeaways
 * **Decoupling Hardware:** LVM separates physical storage boundaries from OS filesystem limits.
 * **Online Resizing:** The '-r' flag with 'lvextend'/'lvreduce' handles filesystem boundaries changes on the fly.
