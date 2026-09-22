@@ -66,9 +66,6 @@ df -h /mnt/data
 **1. Simulating Storage Pressure**
 To emulate a critical database grown event, a 3.5 GB dummy file is generated on the volume:
 ```
-```
-sudo dd if=/dev/zero of=/mnt/data/large_file.img bs=1M count=3500 status=progress
-```
 sudo dd if=/dev/zero of=/mnt/data/large_file.img bs=1M count=3500 status=progress
 ```
 Checking utilization reveals ~90% capacity usage:
