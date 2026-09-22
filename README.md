@@ -2,7 +2,7 @@
 This technical lab demonstrates advanced Linux storage management using **Logical Volume Manager (LVM)** on an **Ubuntu Server 24.04 LTS** virtual machine hosted on **Proxmox VE.**
 
 ## Overview
-In enterprise Linux Environments, storage demands fluctuate unpredictably. Traditional partitioning schemes require service downtime or risky table alterations to scale. **Logical Volume Manager (LVM)** abstracts physical storage devices into flexible virtual pools, allowing System Administrators ro resize dynamically without interrupting active services (*Zero Downtime*).
+In enterprise Linux Environments, storage demands fluctuate unpredictably. Traditional partitioning schemes require service downtime or risky table alterations to scale. **Logical Volume Manager (LVM)** abstracts physical storage devices into flexible virtual pools, allowing System Administrators to resize dynamically without interrupting active services (*Zero Downtime*).
 
 This project simulates a complete storage lifecycle in a real-world infrastructure scenario: Provisioning storage, handling a storage exhaustion event, dynamically extending pools, reducing logical volumes, and safely decommissioning physical disks.
 
